@@ -1,0 +1,61 @@
+@startuml
+
+class ProductCataglog {
+    + Products : Dictionary<Product, int> 
+    
+    + ProductCatalog() : void
+    + AddProduct(product : Product) : void
+    + RemoveProduct(id : int) : bool
+    + GetProductById(id : int) : Product
+    + IsProuctInStock(id : int) : bool
+}
+
+abstract class Product {
+    + ProductId : int
+    + ProductName : string
+    + Price : decimal
+    + Description : string
+
+
+    + Product(id : int, name : string, price : decimal, description : string)
+    + ChangePrice(newPrice : decimal) : void
+}
+
+class FoodProduct {
+    + WeightKg : double
+    + ExpirationDate : DateOnly
+    + Allergens : List<Allergen>
+
+    + Product(id : int, name : string, price : decimal, description : string, weightKg : double, expirationDate : DateOnly, allergens : List<Allergen>)
+}
+
+class DrinkProduct {
+    + AmountL : double
+    + ExpirationDate : DateOnly
+    
+    + Product(id : int, name : string, price : decimal, description : string, amountL : double, ExpirationDate : DateOnly)
+}
+
+
+class MiscellaneousProduct {
+    + weightKg : double
+    + Product(id : int, name : string, price : decimal, description : string, weightKg : double)
+}
+
+enum Allergens {
+    Gluten
+    Milch
+    Eier
+    Nüsse
+    Fisch
+    Krebstiere
+}
+
+Product --|> FoodProduct
+Product --|> DrinkProduct
+Product --|> MiscellaneousProduct
+
+Product --> ProductCataglog
+FoodProduct <-- Allergens
+
+@enduml
