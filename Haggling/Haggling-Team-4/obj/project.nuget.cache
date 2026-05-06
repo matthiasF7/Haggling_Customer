@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OVV4UDzezSk=",
+  "dgSpecHash": "ccCTuHrPFJ8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\matth\\OneDrive - HTBLA Leonding\\Schule\\2.Klasse\\POSEc#\\Haggling\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\matth\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.12\\microsoft.windowsdesktop.app.ref.9.0.12.nupkg.sha512",
-    "C:\\Users\\matth\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.12\\microsoft.netcore.app.ref.9.0.12.nupkg.sha512",
-    "C:\\Users\\matth\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.12\\microsoft.aspnetcore.app.ref.9.0.12.nupkg.sha512",
-    "C:\\Users\\matth\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.12\\microsoft.netcore.app.host.win-x64.9.0.12.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\HTL\\2.Klasse\\POSEOO\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

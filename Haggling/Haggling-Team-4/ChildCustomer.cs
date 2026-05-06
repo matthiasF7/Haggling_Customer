@@ -1,47 +1,66 @@
-﻿
-        using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace Haggling_Team_4
+{
+    internal class ChildCustomer : Customer
     {
-        internal class ChildCustomer : Customer
+        private const decimal ChildBudgetFactor = 0.8m;
+        private const decimal ExtraTrustBonus = 0.05m; 
+
+        public ChildCustomer(
+            decimal startMoney,
+            List<Product.ProductTypeEnum> likes,
+            List<Product.ProductTypeEnum> dislikes)
+            : base(startMoney * ChildBudgetFactor, likes, dislikes)
         {
-            public ChildCustomer(decimal startMoney, List<Product.ProductTypeEnum> likes, List<Product.ProductTypeEnum> dislikes) : base(startMoney*0.8m, likes, dislikes)
-            {
+        }
 
-            }
-
-
-            protected override bool DecideToBuy(Product product, decimal price, Vendor vendor)
-            {
-                if (price > Money)
-                {
-                    return false;
-                }
-
-                if (product.Price*0.7m >= price || (likesVendor(vendor) <4 && (product.Price*0.8m >= price)) || (likesVendor(vendor) >= 4 && (product.Price*0.9m >= price)))
-                {
-                    Bought.Add(vendor, product);
-                    Money-=price;
-                    return true;
-                }
+        protected override bool DecideToBuy(Product product, decimal price, Vendor vendor)
+        {
+            if (price > Money)
                 return false;
-            }
 
+            int affinity = LikesVendor(vendor);
 
-            public override decimal negotiatePrice(Product product, Vendor vendor, decimal price)
+            // Kinder akzeptieren teilweise schlechtere Deals
+            decimal threshold = affinity >= 4 ? 0.9m : affinity > 0 ? 0.85m : 0.75m;
+
+            if (product.Price * threshold >= price)
             {
-                return base.negotiatePrice(product, vendor, price);
+                RegisterPurchase(vendor, product, price);
+                return true;
             }
 
-            protected override int likesVendor(Vendor vendor) => base.likesVendor(vendor) + 1;
+            return false;
+        }
 
+        public override decimal NegotiatePrice(Product product, Vendor vendor, decimal price)
+        {
+            var result = base.NegotiatePrice(product, vendor, price);
 
+            if (result != -1m)
+            {
+                result *= (1 + ExtraTrustBonus);
+                if (result > Money) result = Money;
+            }
+
+            return decimal.Round(result, 2);
+        }
+
+        protected override int LikesVendor(Vendor vendor)
+        {
+            return base.LikesVendor(vendor) + 1;
+        }
+
+        protected void RegisterPurchase(Vendor vendor, Product product, decimal price)
+        {
+            if (!Bought.ContainsKey(vendor))
+            {
+                Bought[vendor] = new List<Product>();
+            }
+
+            Bought[vendor].Add(product);
+            Money -= price;
         }
     }
-
 }
