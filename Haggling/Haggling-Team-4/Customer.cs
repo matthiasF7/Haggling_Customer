@@ -26,6 +26,19 @@ namespace Haggling_Team_4
             Bought = new Dictionary<Vendor, Product>();
         }
 
+        private static readonly Random Rng = new();
+
+        public static Customer GetRandomCustomer(decimal startMoney, List<Product.ProductTypeEnum> likes, List<Product.ProductTypeEnum> dislikes)
+        {
+            return Rng.Next(0, 4) switch
+            {
+                0 => new RichCustomer(startMoney, likes, dislikes),
+                1 => new NiceCustomer(startMoney, likes, dislikes),
+                2 => new ChildCustomer(startMoney, likes, dislikes),
+                3 => new AngryCustomer(startMoney, likes, dislikes),
+                _ => new NiceCustomer(startMoney, likes, dislikes),
+            };
+        }
 
         protected virtual bool DecideToBuy(Product product, decimal price, Vendor vendor)
         {
@@ -79,9 +92,5 @@ namespace Haggling_Team_4
             }
             return count;
         }
-
-
     }
-
-
 }
