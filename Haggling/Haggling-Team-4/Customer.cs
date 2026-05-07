@@ -1,71 +1,87 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Data.SqlTypes;
+using System.Linq;
+using System.Numerics;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Haggling_Team_4
 {
-    internal class ChildCustomer : Customer
+    internal class Customer : ICustomer
     {
-        private const decimal ChildBudgetFactor = 0.8m;
-        private const decimal ExtraTrustBonus = 0.05m; // Kinder vertrauen schneller
 
-        public ChildCustomer(
-            decimal startMoney,
-            List<Product.ProductTypeEnum> likes,
-            List<Product.ProductTypeEnum> dislikes)
-            : base(startMoney * ChildBudgetFactor, likes, dislikes)
+        public decimal Money { get; protected set; }
+        public List<Product.ProductTypeEnum> Likes { get; }
+        public List<Product.ProductTypeEnum> Dislikes { get; }
+        public Dictionary<Vendor, Product> Bought { get; protected set; }
+
+
+        public Customer(decimal startMoney, List<Product.ProductTypeEnum> likes, List<Product.ProductTypeEnum> dislikes)
         {
+            Money = startMoney;
+            Likes = likes;
+            Dislikes = dislikes;
+            Bought = new Dictionary<Vendor, Product>();
         }
 
-        protected override bool DecideToBuy(Product product, decimal price, Vendor vendor)
+
+        protected virtual bool DecideToBuy(Product product, decimal price, Vendor vendor)
         {
             if (price > Money)
-                return false;
-
-            int affinity = LikesVendor(vendor);
-
-            // Kinder sind weniger rational → akzeptieren schlechtere Deals
-            decimal threshold =
-                affinity >= 4 ? 0.9m :   // großzügiger als normaler Kunde
-                affinity > 0 ? 0.85m :
-                               0.75m;
-
-            if (product.Price * threshold >= price)
             {
-                RegisterPurchase(vendor, product, price);
-                return true;
+                return false;
             }
 
+            if (product.Price * 0.7m >= price || (likesVendor(vendor) < 4 && (product.Price * 0.8m >= price)) || (likesVendor(vendor) >= 4 && (product.Price * 0.85m >= price)))
+            {
+                Bought.Add(vendor, product);
+                Money -= price;
+                return true;
+            }
             return false;
         }
 
-        public override decimal NegotiatePrice(Product product, Vendor vendor, decimal price)
+        public virtual decimal negotiatePrice(Product product, Vendor vendor, decimal price)
         {
-            var result = base.NegotiatePrice(product, vendor, price);
-
-            // Falls Gegenangebot kommt → Kinder handeln schlechter
-            if (result != -1m)
+            if (DecideToBuy(product, price, vendor))
             {
-                result *= (1 + ExtraTrustBonus); // zahlen etwas mehr
-                if (result > Money) result = Money;
+                return -1m;     //akzeptieren
             }
 
-            return decimal.Round(result, 2);
+            int vendorAffinity = likesVendor(vendor);
+            bool likesProduct = Likes.Contains(product.ProductType);
+            bool dislikesProduct = Dislikes.Contains(product.ProductType);
+
+            decimal baseDiscount = 0.15m;
+            baseDiscount -= vendorAffinity * 0.03m;
+            if (likesProduct) baseDiscount -= 0.05m;
+            if (dislikesProduct) baseDiscount += 0.07m;
+
+            decimal counter = price * (1 - baseDiscount);
+
+            if (counter < 0.1m) counter = 0.1m;
+            if (counter > Money) counter = Money;
+
+            return decimal.Round(counter, 2);
         }
 
-        protected override int LikesVendor(Vendor vendor)
+        protected virtual int likesVendor(Vendor vendor)
         {
-            // Kinder mögen Verkäufer schneller
-            return base.LikesVendor(vendor) + 1;
-        }
-
-        protected void RegisterPurchase(Vendor vendor, Product product, decimal price)
-        {
-            if (!Bought.ContainsKey(vendor))
+            int count = 0;
+            foreach (Vendor v in Bought.Keys)
             {
-                Bought[vendor] = new List<Product>();
+                if (v == vendor)
+                {
+                    count++;
+                }
             }
-
-            Bought[vendor].Add(product);
-            Money -= price;
+            return count;
         }
+
+
     }
+
+
 }
