@@ -33,7 +33,7 @@ namespace Haggling_Team_4
         }
 
 
-        public override decimal negotiatePrice(Product product, Vendor vendor, decimal price)
+        public override decimal NegotiatePrice(Product product, Vendor vendor, decimal price)
         {
             return base.negotiatePrice(product, vendor, price);
         }

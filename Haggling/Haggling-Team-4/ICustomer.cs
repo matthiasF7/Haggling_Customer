@@ -17,9 +17,9 @@ namespace Haggling_Team_4
 
         protected abstract bool DecideToBuy(Product product, decimal price);
 
-        public abstract decimal negotiatePrice(Product product, Vendor vendor, decimal price);
+        public abstract decimal NegotiatePrice(Product product, Vendor vendor, decimal price);
 
-        protected abstract int likesVendor(Vendor vendor);
+        protected abstract int LikesVendor(Vendor vendor);
 
     }
 }

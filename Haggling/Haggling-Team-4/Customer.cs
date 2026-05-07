@@ -56,14 +56,14 @@ namespace Haggling_Team_4
             return false;
         }
 
-        public virtual decimal negotiatePrice(Product product, Vendor vendor, decimal price)
+        public virtual decimal NegotiatePrice(Product product, Vendor vendor, decimal price)
         {
             if (DecideToBuy(product, price, vendor))
             {
                 return -1m;     //akzeptieren
             }
 
-            int vendorAffinity = likesVendor(vendor);
+            int vendorAffinity = LikesVendor(vendor);
             bool likesProduct = Likes.Contains(product.ProductType);
             bool dislikesProduct = Dislikes.Contains(product.ProductType);
 
@@ -80,7 +80,7 @@ namespace Haggling_Team_4
             return decimal.Round(counter, 2);
         }
 
-        protected virtual int likesVendor(Vendor vendor)
+        protected virtual int LikesVendor(Vendor vendor)
         {
             int count = 0;
             foreach (Vendor v in Bought.Keys)
