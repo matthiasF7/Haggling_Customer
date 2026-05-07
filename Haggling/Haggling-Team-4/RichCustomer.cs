@@ -34,10 +34,10 @@ namespace Haggling_Team_4
 
         public override decimal negotiatePrice(Product product, Vendor vendor, decimal price)
         {
-            return base.negotiatePrice(product, vendor, price) + 0.5m;
+            return base.NegotiatePrice(product, vendor, price) + 0.5m;
         }
 
-        protected override int likesVendor(Vendor vendor) => base.likesVendor(vendor);
+        protected override int likesVendor(Vendor vendor) => base.LikesVendor(vendor);
 
 
     }

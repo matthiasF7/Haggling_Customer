@@ -47,7 +47,7 @@ namespace Haggling_Team_4
                 return false;
             }
 
-            if (product.Price * 0.7m >= price || (likesVendor(vendor) < 4 && (product.Price * 0.8m >= price)) || (likesVendor(vendor) >= 4 && (product.Price * 0.85m >= price)))
+            if (product.Price * 0.7m >= price || (LikesVendor(vendor) < 4 && (product.Price * 0.8m >= price)) || (LikesVendor(vendor) >= 4 && (product.Price * 0.85m >= price)))
             {
                 Bought.Add(vendor, product);
                 Money -= price;
