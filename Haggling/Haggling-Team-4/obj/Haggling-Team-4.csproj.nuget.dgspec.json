@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\HTL\\2.Klasse\\POSEOO\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj": {}
+    "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj": {}
   },
   "projects": {
-    "C:\\HTL\\2.Klasse\\POSEOO\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj": {
+    "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\HTL\\2.Klasse\\POSEOO\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
         "projectName": "Haggling-Team-4",
-        "projectPath": "C:\\HTL\\2.Klasse\\POSEOO\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
-        "packagesPath": "C:\\Users\\quass\\.nuget\\packages\\",
-        "outputPath": "C:\\HTL\\2.Klasse\\POSEOO\\Haggling_Customer\\Haggling\\Haggling-Team-4\\obj\\",
+        "projectPath": "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\quass\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -66,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
