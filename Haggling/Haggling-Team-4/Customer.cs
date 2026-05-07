@@ -26,22 +26,21 @@ namespace Haggling_Team_4
 
         public Customer(decimal startMoney, List<Product.ProductTypeEnum> likes, List<Product.ProductTypeEnum> dislikes)
         {
-            Money = startMoney;
-            Likes = likes;
-            Dislikes = dislikes;
-            Bought = new Dictionary<Vendor, Product>();
+            GetRandomCustomer(startMoney, likes, dislikes);
         }
 
         private static readonly Random Rng = new();
 
         public static Customer GetRandomCustomer(decimal startMoney, List<Product.ProductTypeEnum> likes, List<Product.ProductTypeEnum> dislikes)
         {
-            return Rng.Next(0, 4) switch
+            return Rng.Next(0, 6) switch
             {
                 0 => new RichCustomer(startMoney, likes, dislikes),
                 1 => new NiceCustomer(startMoney, likes, dislikes),
                 2 => new ChildCustomer(startMoney, likes, dislikes),
                 3 => new AngryCustomer(startMoney, likes, dislikes),
+                4 => new PoorCustomer(startMoney, likes, dislikes),
+                5 => new ElderlyCustomer(startMoney, likes, dislikes),
                 _ => new NiceCustomer(startMoney, likes, dislikes),
             };
         }
