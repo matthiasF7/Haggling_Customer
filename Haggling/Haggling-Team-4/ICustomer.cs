@@ -11,9 +11,9 @@ namespace Haggling_Team_4
     internal interface ICustomer
     {
         public decimal Money {  get; protected set; }
-        public List<Product.ProductTypeEnum> Likes { get; }
-        public List<Product.ProductTypeEnum> Dislikes { get; }
-        public Dictionary<Vendor, Product> Bought { get; protected set; }
+        protected List<Product.ProductTypeEnum> Likes { get; }
+        protected List<Product.ProductTypeEnum> Dislikes { get; }
+        protected Dictionary<Vendor, Product> Bought { get;  set; }
 
         protected abstract bool DecideToBuy(Product product, decimal price);
 
