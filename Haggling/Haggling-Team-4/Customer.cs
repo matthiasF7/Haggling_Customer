@@ -57,7 +57,7 @@ namespace Haggling_Team_4
             return false;
         }
 
-        public  decimal NegotiatePrice(string productName, decimal price);
+        public decimal NegotiatePrice(string productName, decimal price);
         {
             if (DecideToBuy(product, price, vendor))
             {
@@ -81,7 +81,7 @@ namespace Haggling_Team_4
             return decimal.Round(counter, 2);
         }
 
-        protected override int LikesVendor(IVendor vendor)
+        protected int LikesVendor(IVendor vendor)
         {
             int count = 0;
             foreach (IVendor v in Bought.Keys)
