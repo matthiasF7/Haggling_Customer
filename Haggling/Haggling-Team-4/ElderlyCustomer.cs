@@ -27,7 +27,7 @@ namespace Haggling_Team_4
             return -1m;
         }
 
-        protected override int LikesIVendor(IVendor vendor) => base.LikesIVendor(vendor) + 2;
+        protected override int LikesVendor(IVendor vendor) => base.LikesVendor(vendor) + 2;
 
     }
 }

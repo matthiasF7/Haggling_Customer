@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace Haggling_Team_4
 {
-    internal interface ICustomer
+    public interface ICustomer
     {
-        public abstract decimal GetMoney();
-        protected abstract bool DecideToBuy(Product product, decimal price, IVendor vendor);
+        public decimal GetMoney();
 
-        public abstract decimal NegotiatePrice(Product product, IVendor vendor, decimal price);
+        public void DecideOnProductToBuy(Product product, IVendor vendor);
 
-        protected abstract int LikesIVendor(IVendor vendor);
+        public  decimal NegotiatePrice(string productName, decimal price);
 
+        public int DecideToBuy(string productName, decimal price);
+
+        public int LikesVendor(IVendor vendor);
     }
 }

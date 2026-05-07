@@ -23,7 +23,7 @@ namespace Haggling_Team_4
                 return false;
             }
 
-            if (product.Price * 0.1m >= price || (LikesIVendor(vendor) < 4 && (product.Price * 0.15m >= price)) || (LikesIVendor(vendor) >= 4 && (product.Price * 0.2m >= price)))
+            if (product.Price * 0.1m >= price || (LikesVendor(vendor) < 4 && (product.Price * 0.15m >= price)) || (LikesVendor(vendor) >= 4 && (product.Price * 0.2m >= price)))
             {
                 Bought.Add(vendor, product);
                 Money -= price;
@@ -38,7 +38,7 @@ namespace Haggling_Team_4
             return base.NegotiatePrice(product, vendor, price) - 1.5m;
         }
 
-        protected override int LikesIVendor(IVendor vendor) => base.LikesIVendor(vendor);
+        protected override int LikesVendor(IVendor vendor) => base.LikesVendor(vendor);
 
 
     }

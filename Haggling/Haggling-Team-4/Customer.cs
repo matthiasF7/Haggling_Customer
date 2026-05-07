@@ -22,6 +22,7 @@ namespace Haggling_Team_4
             Money = startMoney;
             Likes = likes;
             Dislikes = dislikes;
+            Bought = new Dictionary<IVendor, Product>();
         }
 
         private static readonly Random Rng = new();
@@ -40,14 +41,14 @@ namespace Haggling_Team_4
             };
         }
 
-        protected override bool DecideToBuy(Product product, decimal price, IVendor vendor)
+        public int DecideToBuy(string productName, decimal price)
         {
             if (price > Money)
             {
                 return false;
             }
 
-            if (product.Price * 0.7m >= price || (LikesIVendor(vendor) < 4 && (product.Price * 0.8m >= price)) || (LikesIVendor(vendor) >= 4 && (product.Price * 0.85m >= price)))
+            if (product.Price * 0.7m >= price || (LikesVendor(vendor) < 4 && (product.Price * 0.8m >= price)) || (LikesVendor(vendor) >= 4 && (product.Price * 0.85m >= price)))
             {
                 Bought.Add(vendor, product);
                 Money -= price;
@@ -56,14 +57,14 @@ namespace Haggling_Team_4
             return false;
         }
 
-        public override decimal NegotiatePrice(Product product, IVendor vendor, decimal price)
+        public  decimal NegotiatePrice(string productName, decimal price);
         {
             if (DecideToBuy(product, price, vendor))
             {
                 return -1m;     //akzeptieren
             }
 
-            int vendorAffinity = LikesIVendor(vendor);
+            int vendorAffinity = LikesVendor(vendor);
             bool likesProduct = Likes.Contains(product.ProductType);
             bool dislikesProduct = Dislikes.Contains(product.ProductType);
 
@@ -80,7 +81,7 @@ namespace Haggling_Team_4
             return decimal.Round(counter, 2);
         }
 
-        protected override int LikesIVendor(IVendor vendor)
+        protected override int LikesVendor(IVendor vendor)
         {
             int count = 0;
             foreach (IVendor v in Bought.Keys)
@@ -93,19 +94,9 @@ namespace Haggling_Team_4
             return count;
         }
 
-        bool ICustomer.DecideToBuy(Product product, decimal price, IVendor vendor)
+        public void DecideOnProductToBuy(Product product, IVendor vendor)
         {
-           return DecideToBuy(product, price, vendor);
-        }
 
-        decimal ICustomer.NegotiatePrice(Product product, IVendor vendor, decimal price)
-        {
-            return NegotiatePrice(product, vendor, price);
-        }
-
-        int ICustomer.LikesIVendor(IVendor vendor)
-        {
-            return LikesIVendor(vendor);
         }
 
         public decimal GetMoney()
