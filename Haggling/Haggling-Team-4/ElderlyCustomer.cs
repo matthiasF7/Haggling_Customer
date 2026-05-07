@@ -16,18 +16,18 @@ namespace Haggling_Team_4
         }
 
 
-        protected override bool DecideToBuy(Product product, decimal price, Vendor vendor)
+        protected override bool DecideToBuy(Product product, decimal price, IVendor vendor)
         {
             return true;
         }
 
 
-        public override decimal NegotiatePrice(Product product, Vendor vendor, decimal price)
+        public override decimal NegotiatePrice(Product product, IVendor vendor, decimal price)
         {
             return -1m;
         }
 
-        protected override int LikesVendor(Vendor vendor) => base.LikesVendor(vendor) + 2;
+        protected override int LikesIVendor(IVendor vendor) => base.LikesIVendor(vendor) + 2;
 
     }
 }

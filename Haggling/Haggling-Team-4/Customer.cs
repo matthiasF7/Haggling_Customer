@@ -15,14 +15,7 @@ namespace Haggling_Team_4
         public decimal Money { get; protected set; }
         public List<Product.ProductTypeEnum> Likes { get; }
         public List<Product.ProductTypeEnum> Dislikes { get; }
-        public Dictionary<Vendor, Product> Bought { get; protected set; }
-        decimal ICustomer.Money { get => Money; set => Money = value; }
-
-        List<Product.ProductTypeEnum> ICustomer.Likes => Likes;
-
-        List<Product.ProductTypeEnum> ICustomer.Dislikes => Dislikes;
-
-        Dictionary<Vendor, Product> ICustomer.Bought { get => Bought; set => Bought = value; }
+        public Dictionary<IVendor, Product> Bought { get; protected set; }
 
         public Customer(decimal startMoney, List<Product.ProductTypeEnum> likes, List<Product.ProductTypeEnum> dislikes)
         {
@@ -47,14 +40,14 @@ namespace Haggling_Team_4
             };
         }
 
-        protected override bool DecideToBuy(Product product, decimal price, Vendor vendor)
+        protected override bool DecideToBuy(Product product, decimal price, IVendor vendor)
         {
             if (price > Money)
             {
                 return false;
             }
 
-            if (product.Price * 0.7m >= price || (LikesVendor(vendor) < 4 && (product.Price * 0.8m >= price)) || (LikesVendor(vendor) >= 4 && (product.Price * 0.85m >= price)))
+            if (product.Price * 0.7m >= price || (LikesIVendor(vendor) < 4 && (product.Price * 0.8m >= price)) || (LikesIVendor(vendor) >= 4 && (product.Price * 0.85m >= price)))
             {
                 Bought.Add(vendor, product);
                 Money -= price;
@@ -63,14 +56,14 @@ namespace Haggling_Team_4
             return false;
         }
 
-        public override decimal NegotiatePrice(Product product, Vendor vendor, decimal price)
+        public override decimal NegotiatePrice(Product product, IVendor vendor, decimal price)
         {
             if (DecideToBuy(product, price, vendor))
             {
                 return -1m;     //akzeptieren
             }
 
-            int vendorAffinity = LikesVendor(vendor);
+            int vendorAffinity = LikesIVendor(vendor);
             bool likesProduct = Likes.Contains(product.ProductType);
             bool dislikesProduct = Dislikes.Contains(product.ProductType);
 
@@ -87,10 +80,10 @@ namespace Haggling_Team_4
             return decimal.Round(counter, 2);
         }
 
-        protected override int LikesVendor(Vendor vendor)
+        protected override int LikesIVendor(IVendor vendor)
         {
             int count = 0;
-            foreach (Vendor v in Bought.Keys)
+            foreach (IVendor v in Bought.Keys)
             {
                 if (v == vendor)
                 {
@@ -100,19 +93,19 @@ namespace Haggling_Team_4
             return count;
         }
 
-        bool ICustomer.DecideToBuy(Product product, decimal price, Vendor vendor)
+        bool ICustomer.DecideToBuy(Product product, decimal price, IVendor vendor)
         {
            return DecideToBuy(product, price, vendor);
         }
 
-        decimal ICustomer.NegotiatePrice(Product product, Vendor vendor, decimal price)
+        decimal ICustomer.NegotiatePrice(Product product, IVendor vendor, decimal price)
         {
             return NegotiatePrice(product, vendor, price);
         }
 
-        int ICustomer.LikesVendor(Vendor vendor)
+        int ICustomer.LikesIVendor(IVendor vendor)
         {
-            return LikesVendor(vendor);
+            return LikesIVendor(vendor);
         }
 
         public decimal GetMoney()
