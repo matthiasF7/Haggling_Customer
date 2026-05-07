@@ -37,7 +37,7 @@ namespace Haggling_Team_4
             return base.NegotiatePrice(product, vendor, price) + 0.5m;
         }
 
-        protected override int likesVendor(Vendor vendor) => base.LikesVendor(vendor);
+        protected override int LikesVendor(Vendor vendor) => base.LikesVendor(vendor);
 
 
     }
