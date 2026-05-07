@@ -10,11 +10,7 @@ namespace Haggling_Team_4
 {
     internal interface ICustomer
     {
-        public decimal Money {  get; protected set; }
-        protected List<Product.ProductTypeEnum> Likes { get; }
-        protected List<Product.ProductTypeEnum> Dislikes { get; }
-        protected Dictionary<Vendor, Product> Bought { get;  set; }
-
+        public abstract decimal GetMoney();
         protected abstract bool DecideToBuy(Product product, decimal price, Vendor vendor);
 
         public abstract decimal NegotiatePrice(Product product, Vendor vendor, decimal price);

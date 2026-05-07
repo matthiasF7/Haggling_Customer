@@ -26,7 +26,9 @@ namespace Haggling_Team_4
 
         public Customer(decimal startMoney, List<Product.ProductTypeEnum> likes, List<Product.ProductTypeEnum> dislikes)
         {
-            GetRandomCustomer(startMoney, likes, dislikes);
+            Money = startMoney;
+            Likes = likes;
+            Dislikes = dislikes;
         }
 
         private static readonly Random Rng = new();
@@ -111,6 +113,11 @@ namespace Haggling_Team_4
         int ICustomer.LikesVendor(Vendor vendor)
         {
             return LikesVendor(vendor);
+        }
+
+        public decimal GetMoney()
+        {
+            return Money;
         }
     }
 }
