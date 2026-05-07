@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\matth\\OneDrive - HTBLA Leonding\\Schule\\2.Klasse\\POSEc#\\Haggling\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj": {}
   },
   "projects": {
@@ -12,12 +13,29 @@
         "projectPath": "C:\\Users\\matth\\OneDrive - HTBLA Leonding\\Schule\\2.Klasse\\POSEc#\\Haggling\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
         "packagesPath": "C:\\Users\\matth\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\matth\\OneDrive - HTBLA Leonding\\Schule\\2.Klasse\\POSEc#\\Haggling\\Haggling\\Haggling-Team-4\\obj\\",
+=======
+    "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
+        "projectName": "Haggling-Team-4",
+        "projectPath": "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\obj\\",
+>>>>>>> a1e159ca51b8a6e5319d93eaf2b679f0568c2020
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> a1e159ca51b8a6e5319d93eaf2b679f0568c2020
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -83,6 +101,7 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(, 4.7.32767]",
@@ -368,6 +387,9 @@
             "System.Xml.XPath": "(, 4.3.32767]",
             "System.Xml.XPath.XDocument": "(, 5.0.32767]"
           }
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
+>>>>>>> a1e159ca51b8a6e5319d93eaf2b679f0568c2020
         }
       }
     }

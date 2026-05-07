@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "OVV4UDzezSk=",
   "success": true,
   "projectFilePath": "C:\\Users\\matth\\OneDrive - HTBLA Leonding\\Schule\\2.Klasse\\POSEc#\\Haggling\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
@@ -9,5 +10,11 @@
     "C:\\Users\\matth\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.12\\microsoft.aspnetcore.app.ref.9.0.12.nupkg.sha512",
     "C:\\Users\\matth\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.12\\microsoft.netcore.app.host.win-x64.9.0.12.nupkg.sha512"
   ],
+=======
+  "dgSpecHash": "mEdDxlVIkz8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\admin\\Desktop\\Haggling\\Haggling_Customer\\Haggling\\Haggling-Team-4\\Haggling-Team-4.csproj",
+  "expectedPackageFiles": [],
+>>>>>>> a1e159ca51b8a6e5319d93eaf2b679f0568c2020
   "logs": []
 }
