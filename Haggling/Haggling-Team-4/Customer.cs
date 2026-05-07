@@ -16,7 +16,13 @@ namespace Haggling_Team_4
         public List<Product.ProductTypeEnum> Likes { get; }
         public List<Product.ProductTypeEnum> Dislikes { get; }
         public Dictionary<Vendor, Product> Bought { get; protected set; }
+        decimal ICustomer.Money { get => Money; set => Money = value; }
 
+        List<Product.ProductTypeEnum> ICustomer.Likes => Likes;
+
+        List<Product.ProductTypeEnum> ICustomer.Dislikes => Dislikes;
+
+        Dictionary<Vendor, Product> ICustomer.Bought { get => Bought; set => Bought = value; }
 
         public Customer(decimal startMoney, List<Product.ProductTypeEnum> likes, List<Product.ProductTypeEnum> dislikes)
         {
@@ -40,7 +46,7 @@ namespace Haggling_Team_4
             };
         }
 
-        protected virtual bool DecideToBuy(Product product, decimal price, Vendor vendor)
+        protected override bool DecideToBuy(Product product, decimal price, Vendor vendor)
         {
             if (price > Money)
             {
@@ -56,7 +62,7 @@ namespace Haggling_Team_4
             return false;
         }
 
-        public virtual decimal NegotiatePrice(Product product, Vendor vendor, decimal price)
+        public override decimal NegotiatePrice(Product product, Vendor vendor, decimal price)
         {
             if (DecideToBuy(product, price, vendor))
             {
@@ -80,7 +86,7 @@ namespace Haggling_Team_4
             return decimal.Round(counter, 2);
         }
 
-        protected virtual int LikesVendor(Vendor vendor)
+        protected override int LikesVendor(Vendor vendor)
         {
             int count = 0;
             foreach (Vendor v in Bought.Keys)
@@ -91,6 +97,21 @@ namespace Haggling_Team_4
                 }
             }
             return count;
+        }
+
+        bool ICustomer.DecideToBuy(Product product, decimal price, Vendor vendor)
+        {
+           return DecideToBuy(product, price, vendor);
+        }
+
+        decimal ICustomer.NegotiatePrice(Product product, Vendor vendor, decimal price)
+        {
+            return NegotiatePrice(product, vendor, price);
+        }
+
+        int ICustomer.LikesVendor(Vendor vendor)
+        {
+            return LikesVendor(vendor);
         }
     }
 }

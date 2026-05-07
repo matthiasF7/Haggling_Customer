@@ -15,7 +15,7 @@ namespace Haggling_Team_4
         protected List<Product.ProductTypeEnum> Dislikes { get; }
         protected Dictionary<Vendor, Product> Bought { get;  set; }
 
-        protected abstract bool DecideToBuy(Product product, decimal price);
+        protected abstract bool DecideToBuy(Product product, decimal price, Vendor vendor);
 
         public abstract decimal NegotiatePrice(Product product, Vendor vendor, decimal price);
 
