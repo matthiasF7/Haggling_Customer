@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Haggling-Team-4")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4eb5b65267afff90b3f69ef6cd0380e314594c2b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ea1e9cc8d69851430cde9086b52c63f9953ddc0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Haggling-Team-4")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Haggling-Team-4")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

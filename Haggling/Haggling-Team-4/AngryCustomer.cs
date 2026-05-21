@@ -15,29 +15,64 @@ namespace Haggling_Team_4
         }
 
 
-        protected override bool DecideToBuy(Product product, decimal price, IVendor vendor)
+        protected new int DecideToBuy(decimal price)
         {
             if (price > Money)
             {
-                return false;
+                return 0;
             }
 
-            if (product.Price * 0.65m >= price || (LikesVendor(vendor) <4 && (product.Price * 0.7m >= price)) || (LikesVendor(vendor) >= 4 && (product.Price * 0.75m >= price)))
+            if (Product.Price * 0.7m >= price || (LikesVendor(Vendor) < 4 && (Product.Price * 0.75m >= price)) || (LikesVendor(Vendor) >= 4 && (Product.Price * 0.8m >= price)))
             {
-                Bought.Add(vendor, product);
+                Bought.Add(Vendor, Product);
                 Money -= price;
-                return true;
+                if (Likes.Contains(Product.ProductType))
+                {
+                    if (LikesVendor(Vendor) > 0)
+                    {
+                        return 3;
+                    }
+                    else
+                    {
+                        return 2;
+                    }
+
+                }
+                else
+                {
+                    return 1;
+                }
             }
-            return false;
+            return 0;
         }
 
 
-        public override decimal NegotiatePrice(Product product, IVendor vendor, decimal price)
+        public decimal? NegotiatePrice(Product product, IVendor vendor, decimal price)
         {
-            return base.NegotiatePrice(product, vendor, price) - 0.5m;
+            if (DecideToBuy(price) > 0)
+            {
+                return price;
+            }
+
+            int vendorAffinity = LikesVendor(Vendor);
+            bool likesProduct = Likes.Contains(Product.ProductType);
+            bool dislikesProduct = Dislikes.Contains(Product.ProductType);
+
+            decimal baseDiscount = 0.15m;
+            baseDiscount -= vendorAffinity * 0.03m;
+            if (likesProduct) baseDiscount -= 0.05m;
+            if (dislikesProduct) baseDiscount += 0.07m;
+
+            decimal counter = price * (1 - baseDiscount);
+
+            if (counter < 0.1m) counter = 0.1m;
+            if (counter > Money) counter = Money;
+
+            return decimal.Round(counter, 2) - 0.5m;
+
         }
 
-        protected override int LikesVendor(IVendor vendor) => base.LikesVendor(vendor) - 1;
+        protected new int LikesVendor(IVendor vendor) => base.LikesVendor(vendor) - 1;
 
 
     }

@@ -14,9 +14,9 @@ namespace Haggling_Team_4
 
         public void DecideOnProductToBuy(Product product, IVendor vendor);
 
-        public  decimal NegotiatePrice(string productName, decimal price);
+        public decimal? NegotiatePrice(decimal price); // Return price if offer is accepted
 
-        public int DecideToBuy(string productName, decimal price);
+        public int DecideToBuy(decimal price);
 
         public int LikesVendor(IVendor vendor);
     }

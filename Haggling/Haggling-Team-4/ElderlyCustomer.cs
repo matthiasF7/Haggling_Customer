@@ -10,24 +10,27 @@ namespace Haggling_Team_4
     internal class ElderlyCustomer : Customer
     {
 
-        public ElderlyCustomer(decimal startMoney, List<Product.ProductTypeEnum> likes, List<Product.ProductTypeEnum> dislikes) : base(startMoney , likes, dislikes)
+        public ElderlyCustomer(decimal startMoney, List<Product.ProductTypeEnum> likes, List<Product.ProductTypeEnum> dislikes) : base(startMoney, likes, dislikes)
         {
 
         }
 
 
-        protected override bool DecideToBuy(Product product, decimal price, IVendor vendor)
+        protected new int DecideToBuy(decimal price)
         {
-            return true;
+            return 1;
         }
 
 
-        public override decimal NegotiatePrice(Product product, IVendor vendor, decimal price)
+        public decimal? NegotiatePrice(Product product, IVendor vendor, decimal price)
         {
-            return -1m;
+            return price;
+
         }
 
-        protected override int LikesVendor(IVendor vendor) => base.LikesVendor(vendor) + 2;
+        protected new int LikesVendor(IVendor vendor) => base.LikesVendor(vendor) + 2;
+
+
 
     }
 }
